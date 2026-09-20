@@ -1,0 +1,20 @@
+[project]
+name = "my-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "trieu", email = "huynhhuuhaitrieu@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "psycopg2-binary>=2.9.13",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+my-project = "my_project:main"
+
+[build-system]
+requires = ["uv_build>=0.12.17,<0.13.0"]
+build-backend = "uv_build"
