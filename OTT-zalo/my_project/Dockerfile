@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Tích hợp uv vào container để cài đặt thư viện siêu tốc
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
