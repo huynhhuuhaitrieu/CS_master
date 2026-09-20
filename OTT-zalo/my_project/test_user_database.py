@@ -33,7 +33,8 @@ def get_user_input():
 if __name__ == "__main__":
     # Khởi tạo đối tượng db với cấu hình PostgreSQL của bạn
     db = UserDatabase(
-        host="localhost", 
+        # host="localhost",
+        host="postgres", 
         dbname="voting", 
         user="postgres", 
         password="postgres"

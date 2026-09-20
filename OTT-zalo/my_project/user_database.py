@@ -78,3 +78,41 @@ class UserDatabase:
         except Error as e:
             self.conn.rollback()
             print(f"Lỗi thêm user: {e}")
+
+            
+    def get_all_users(self):
+        """Trích xuất toàn bộ dữ liệu từ bảng Users."""
+        if not self.conn or not self.cur:
+            raise Exception("Chưa kết nối database!")
+
+        select_query = "SELECT * FROM Users;"
+        try:
+            self.cur.execute(select_query)
+            records = self.cur.fetchall()
+            print(f"=> Trích xuất thành công {len(records)} users.")
+            
+            # Trả về danh sách các tuple chứa dữ liệu
+            return records
+        except Error as e:
+            print(f"Lỗi trích xuất dữ liệu: {e}")
+            return []
+
+    def get_user_by_id(self, user_id):
+        """Trích xuất thông tin của 1 user cụ thể dựa vào ID."""
+        if not self.conn or not self.cur:
+            raise Exception("Chưa kết nối database!")
+
+        select_query = "SELECT * FROM Users WHERE id = %s;"
+        try:
+            self.cur.execute(select_query, (user_id,))
+            record = self.cur.fetchone()
+            
+            if record:
+                print(f"=> Đã tìm thấy user: {record[2]}") # record[2] là display_name
+            else:
+                print(f"=> Không tìm thấy user với ID: {user_id}")
+                
+            return record
+        except Error as e:
+            print(f"Lỗi tìm kiếm user: {e}")
+            return None
